@@ -1,8 +1,12 @@
 import { useState } from 'react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import { ListCollapse, User } from 'lucide-react';
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
+    
+    const { auth } = usePage().props;
+    const isLoggedIn = auth.user ? true : false;
 
     return (
         <header className="border-b bg-neutral-900">
@@ -35,22 +39,34 @@ export default function Header() {
                 {/* User Menu */}
                 <div className="absolute right-6">
                     <div className="relative">
-                        <button
-                            onClick={() => setMenuOpen(!menuOpen)}
-                            className="rounded-full p-2 hover:bg-neutral-100"
-                        >
-                            <User className="text-neutral-400"/>
-                        </button>
 
-                        {menuOpen && (
-                            <div className="absolute right-0 mt-3 w-40 border bg-neutral-900">
+                        {/* NOT logged in → link to login */}
+                        {!isLoggedIn ? (
+                            <Link
+                                href="/login"
+                                className="rounded-full p-2 hover:bg-neutral-800 inline-flex"
+                            >
+                                <User className="text-neutral-400" />
+                            </Link>
+                        ) : (
+                            <>
                                 <button
-                                    className="block w-full px-4 py-3 text-neutral-400 font-medium text-left text-sm hover:bg-neutral-100"
+                                    onClick={() => setMenuOpen(prev => !prev)}
+                                    className="rounded-full p-2 hover:bg-neutral-800"
                                 >
-                                    Logout
+                                    <User className="text-neutral-400" />
                                 </button>
-                            </div>
+
+                                {menuOpen && (
+                                    <div className="absolute right-0 mt-3 w-40 border bg-neutral-900">
+                                        <button className="block w-full px-4 py-3 text-left text-sm text-neutral-400 hover:bg-neutral-800">
+                                            Logout
+                                        </button>
+                                    </div>
+                                )}
+                            </>
                         )}
+
                     </div>
                 </div>
             </div>

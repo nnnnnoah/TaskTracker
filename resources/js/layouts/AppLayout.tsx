@@ -17,7 +17,7 @@ export default function AppLayout({ children }: Props) {
                 />
             </Head>
             <Header />
-            <main>{children}</main>
+            <main className="py-10 px-5">{children}</main>
         </>
     );
 }
