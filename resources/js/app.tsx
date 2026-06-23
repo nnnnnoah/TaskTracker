@@ -6,6 +6,18 @@ import { createRoot } from 'react-dom/client';
 import '../css/app.css';
 import { initializeTheme } from '@/hooks/use-appearance';
 import AppLayout from '@/layouts/AppLayout';
+import { route as ziggyRoute } from 'ziggy-js';
+
+declare global {
+    interface Window {
+        route: typeof ziggyRoute;
+    }
+    const route: typeof ziggyRoute; 
+}
+
+window.route = ((name: any, params: any, absolute: any) =>
+    ziggyRoute(name, params, absolute, (window as any).Ziggy)) as typeof ziggyRoute;
+
 const pages = import.meta.glob('./pages/**/*.tsx');
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';

@@ -9,13 +9,20 @@ Route::inertia('/', 'Home', [
 
 Route::inertia('/register', 'Register', [
     
-])->name('Register');
+])->name('register');
 
 Route::inertia('/login', 'Login', [
     
-])->name('Login');
+])->name('login');
 
-// what is this
+Route::inertia('/lists', 'Lists', [
+    
+])->name('lists');
+
+Route::inertia('/tasks', 'Tasks', [
+    
+])->name('tasks');
+
 // Route::middleware(['auth', 'verified'])->group(function () {
 //     Route::inertia('dashboard', 'dashboard')->name('dashboard');
 // });
