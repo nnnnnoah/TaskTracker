@@ -1,21 +1,13 @@
 import { Head, Link, usePage } from '@inertiajs/react';
+import RegisterForm from '@/components/forms/RegisterForm';
 
-export default function Home() {
+export default function Register() {
     const { auth } = usePage().props;
 
     return (
         <>
             <Head title="Login"></Head>
-
-            {auth.user ? (
-                <>
-                    Redirect to homepage
-                </>
-            ) : (
-                <>
-                    Show the register form
-                </>
-            )}
+            <RegisterForm />
         </>
     );
 }

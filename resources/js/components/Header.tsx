@@ -23,7 +23,9 @@ export default function Header() {
 
                 {/* Center Logo */}
                 <div className="flex-shrink-0">
-                    <ListCollapse size={35} className = "text-white"/>
+                    <Link href={route('home')}>
+                        <ListCollapse size={35} className = "text-white"/>
+                    </Link>
                 </div>
 
                 {/* Right */}

@@ -7,14 +7,6 @@ Route::inertia('/', 'Home', [
     
 ])->name('home');
 
-Route::inertia('/register', 'Register', [
-    
-])->name('register');
-
-Route::inertia('/login', 'Login', [
-    
-])->name('login');
-
 Route::inertia('/lists', 'Lists', [
     
 ])->name('lists');
@@ -22,6 +14,11 @@ Route::inertia('/lists', 'Lists', [
 Route::inertia('/tasks', 'Tasks', [
     
 ])->name('tasks');
+
+Route::middleware('guest')->group(function () {
+    Route::inertia('/login', 'Login')->name('login');
+    Route::inertia('/register', 'Register')->name('register');
+});
 
 // Route::middleware(['auth', 'verified'])->group(function () {
 //     Route::inertia('dashboard', 'dashboard')->name('dashboard');

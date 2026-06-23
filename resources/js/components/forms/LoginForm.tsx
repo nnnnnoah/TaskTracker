@@ -6,6 +6,6 @@ interface FormData {
     passowrd: string;
 }
 
-export default function Login() {
+export default function LoginForm() {
     <></>
 }
