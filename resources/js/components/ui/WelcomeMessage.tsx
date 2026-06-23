@@ -5,7 +5,7 @@ type WelcomeMessageProps = {
 export default function WelcomeMessage({isLoggedIn}: WelcomeMessageProps) {
     return (
         <>
-            <div className="text-center">
+            <div className="text-center mb-10">
                 {isLoggedIn ? (
                     <p>Welcome back, username!</p>
                 ) : (

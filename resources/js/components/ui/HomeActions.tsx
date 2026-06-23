@@ -15,8 +15,8 @@ export default function HomeActions({isLoggedIn}: HomeActionsProps) {
                     </>
                 ) : (
                     <>
-                        <Link href="/login">Login</Link>
-                        <Link href="/register">Register</Link>
+                        <Link href="/login"><button>Login</button></Link>
+                        <Link href="/register"><button>Register</button></Link>
                     </>
                 )}
             </div>

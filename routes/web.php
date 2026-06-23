@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
+use App\Http\Controllers\AuthController;
 
 Route::inertia('/', 'Home', [
     
@@ -18,6 +19,9 @@ Route::inertia('/tasks', 'Tasks', [
 Route::middleware('guest')->group(function () {
     Route::inertia('/login', 'Login')->name('login');
     Route::inertia('/register', 'Register')->name('register');
+
+    Route::post('/login', [AuthController::class, 'login'])->name('login.store');
+    Route::post('/register', [AuthController::class, 'register'])->name('register.store');
 });
 
 // Route::middleware(['auth', 'verified'])->group(function () {
