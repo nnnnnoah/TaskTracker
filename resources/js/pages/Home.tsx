@@ -3,6 +3,7 @@ import WelcomeMessage from '@/components/ui/WelcomeMessage';
 import HomeActions from '@/components/ui/HomeActions';
 
 export default function Home() {
+    // Access the auth property from the Inertia page props. This value is used to dynamically render homepage actions.
     const { auth } = usePage().props;
     const isLoggedIn = !!auth.user;
 

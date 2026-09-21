@@ -18,11 +18,11 @@ export default function Home() {
                         </h1>
 
                         <p className="text-lg text-neutral-400 mb-0">
-                            A simple task management application built with Laravel,
+                            A task management application built with Laravel,
                             React, and Inertia.
                         </p>
 
-                        <p className="text-lg text-neutral-400">
+                        <p className="text-lg text-neutral-400 font-bold">
                             Author: Noah Miller
                         </p>
                     </div>

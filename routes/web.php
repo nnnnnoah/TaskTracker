@@ -21,10 +21,13 @@ Route::inertia('/tasks', 'Tasks', [
     
 ])->name('tasks');
 
+// Apply the guest middleware to the login and register routes. This ensures that only unauthenticated users can access these routes.
 Route::middleware('guest')->group(function () {
+    // Display the login and register pages using Inertia.js.
     Route::inertia('/login', 'Login')->name('login');
     Route::inertia('/register', 'Register')->name('register');
 
+    // Handle the login and register form submissions using the AuthController.
     Route::post('/login', [AuthController::class, 'login'])->name('login.store');
     Route::post('/register', [AuthController::class, 'register'])->name('register.store');
 });
