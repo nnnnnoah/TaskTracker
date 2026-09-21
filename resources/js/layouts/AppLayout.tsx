@@ -2,20 +2,25 @@ import type { ReactNode } from 'react';
 import { Head, usePage } from '@inertiajs/react';
 import Header from '@/components/Header';
 
-// Define the props type for the AppLayout component
+// Define the props type for the AppLayout component.
 type Props = {
     children: ReactNode;
 };
 
 export default function AppLayout({ children }: Props) {
-    // Access the auth and component properties from the Inertia page props
-    const { auth, component } = usePage().props as any;
+    // Access the Inertia page object to get the current page's component and props.
+    const page = usePage();
 
-    // Determine if the user is logged in and if the current page is the home page
+    // Determine if the user is logged in and if the current page is the home page.
+    const { auth } = page.props as any;
+
+    // Check if the user is logged in by verifying if the auth object has a user property.
     const isLoggedIn = !!auth?.user;
-    const isHome = component === 'Home';
 
-    // Dynamically determine if the content should be centered based on the current page and login status
+    // Check if the current page's component is 'Welcome'.
+    const isHome = page.component === 'Welcome';
+
+    // Determine if the main content should be centered based on whether the user is on the home page and not logged in.
     const shouldBeCentered = isHome && !isLoggedIn;
 
     return (

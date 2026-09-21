@@ -1,4 +1,4 @@
-import { useForm } from '@inertiajs/react';
+import { useForm, usePage } from '@inertiajs/react';
 
 // TypeScript interface: defines the shape of the form data.
 // Passed to useForm<FormData> so TypeScript can catch typos on field names.
@@ -8,15 +8,24 @@ interface FormData {
 }
 
 export default function LoginForm() {
+    // Access the Inertia page object to get the current page's component and props.
+    const page = usePage();
+
+    // Check if the current page's component is 'Register'.
+    const isRegister = page.component === 'Register';
+
+    // Determine the route to post the form data to based on whether the current page is the registration page or the login page.
+    const postRoute = isRegister ? route('register') : route('login');
+
     // useForm is Inertia's form helper hook. It returns an object containing the form state and a set of methods for managing it.
     // We destructure the object immediately so we can use the values directly instead of writing form.data, form.setData, etc.
     const {
-        data,      
-        setData,   
+        data,
+        setData,
         post,
         processing,
-        errors,    
-        reset,     
+        errors,
+        reset,
         clearErrors
     } = useForm<FormData>({
         name: '',
@@ -28,7 +37,7 @@ export default function LoginForm() {
 
         // post() sends the form data to the given route via HTTP POST.
         // It automatically includes the current values of 'data' via closure.
-        post(route('register'), {
+        post(postRoute, {
             preserveScroll: true,
             onSuccess: () => {
                 reset();
@@ -53,17 +62,16 @@ export default function LoginForm() {
                         setData('name', e.target.value);
                         clearErrors('name');
                     }}
-                    className={`w-full bg-white text-black rounded-none p-2 border transition ${
-                        errors.name
+                    className={`w-full bg-white text-black rounded-none p-2 border transition ${errors.name
                             ? 'border-red-500 focus:border-red-500 focus:ring-red-200'
                             : 'border-neutral-400 focus:border-black'
-                    }`}
+                        }`}
                 />
                 {errors.name && (
                     <p className="text-red-500">{errors.name}</p>
                 )}
             </div>
-    
+
             <div className="w-full flex flex-col items-start mb-5">
                 <label htmlFor="password" className="mb-2">
                     Password
@@ -76,11 +84,10 @@ export default function LoginForm() {
                         setData('password', e.target.value);
                         clearErrors('password');
                     }}
-                    className={`w-full bg-white text-black rounded-none p-2 border transition ${
-                        errors.password
+                    className={`w-full bg-white text-black rounded-none p-2 border transition ${errors.password
                             ? 'border-red-500 focus:border-red-500 focus:ring-red-200'
                             : 'border-neutral-400 focus:border-black'
-                    }`}
+                        }`}
                 />
                 {errors.password && (
                     <p className="text-red-500">{errors.password}</p>

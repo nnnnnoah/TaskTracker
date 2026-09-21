@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     // Handles login logic. This function checks if the provided credentials match a user in the database and logs them in if they do.
     public function login(Request $request)
@@ -19,7 +19,7 @@ class AuthController extends Controller
             'name' => 'required|string',
             'password' => 'required|string',
         ]);
-    
+
         // Attempt to log the user in with the provided credentials.
         // If successful, regenerate the session now that they are authed and redirect them to the home page.
         if (Auth::attempt($credentials)) {
@@ -52,6 +52,21 @@ class AuthController extends Controller
         Auth::login($user);
         
         // Redirect them to the homepage.
+        return redirect()->intended($this->redirectTo);
+    }
+
+    // Handles user logout. This function logs the user out and invalidates their session.
+    public function logout(Request $request) {
+        // Log the user out using Laravel's Auth facade (simplified interface for a library).
+        Auth::logout();
+
+        // Invalidate the user's session to prevent session fixation attacks.
+        $request->session()->invalidate();
+
+        // Regenerate the CSRF token to ensure that the next request is secure.
+        $request->session()->regenerateToken();
+
+        // Redirect the user to the homepage after logging out.
         return redirect()->intended($this->redirectTo);
     }
 }

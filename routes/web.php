@@ -32,8 +32,12 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [AuthController::class, 'register'])->name('register.store');
 });
 
-// Route::middleware(['auth', 'verified'])->group(function () {
-//     Route::inertia('dashboard', 'dashboard')->name('dashboard');
-// });
+// Apply the auth middleware to the logout route. This ensures that only authenticated users can access this route.
+Route::middleware('auth')->group(function () {
+    Route::inertia('/logout', 'Logout')->name('logout');
+
+    // Handle the logout form submission using the AuthController.
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout.store');
+});
 
 require __DIR__.'/settings.php';

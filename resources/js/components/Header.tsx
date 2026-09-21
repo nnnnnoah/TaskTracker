@@ -1,12 +1,29 @@
 import { useState } from 'react';
-import { Head, Link, usePage } from '@inertiajs/react';
+import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import { ListCollapse, User } from 'lucide-react';
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
-    
+
     const { auth } = usePage().props;
     const isLoggedIn = auth.user ? true : false;
+
+    // useForm is Inertia's form helper hook. It returns an object containing the form state and a set of methods for managing it.
+    // We destructure the object immediately so we can use the values directly instead of writing form.data, form.setData, etc.
+    const {
+        post
+    } = useForm();
+
+    const logout = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        post(route('logout'), {
+            preserveScroll: true,
+            onSuccess: () => {
+                setMenuOpen(false);
+            }
+        });
+    }
 
     return (
         <header className="border-b bg-neutral-900">
@@ -24,7 +41,7 @@ export default function Header() {
                 {/* Center Logo */}
                 <div className="flex-shrink-0">
                     <Link href={route('home')}>
-                        <ListCollapse size={35} className = "text-white"/>
+                        <ListCollapse size={35} className="text-white" />
                     </Link>
                 </div>
 
@@ -61,11 +78,9 @@ export default function Header() {
 
                                 {menuOpen && (
                                     <div className="absolute right-0 mt-3 w-40 border bg-neutral-900">
-                                        <Link href={route('logout')}>
-                                            <button className="block w-full px-4 py-3 text-left text-sm text-neutral-400 hover:bg-neutral-800">
-                                                Logout
-                                            </button>
-                                        </Link>
+                                        <button onClick={logout} className="block w-full px-4 py-3 text-left text-sm text-neutral-400 hover:bg-neutral-800">
+                                            Logout
+                                        </button>
                                     </div>
                                 )}
                             </>
