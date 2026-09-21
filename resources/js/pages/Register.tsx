@@ -12,6 +12,7 @@ export default function Register() {
             <p className="text-center mb-10">Please provide the details that will be used to log into your account.</p>
 
             <LoginForm />
+            <p className="text-center mt-5">You can log into your account <Link className="text-amber-600 hover:text-amber-700" href={route('login')}>here</Link>.</p>
         </>
     );
 }

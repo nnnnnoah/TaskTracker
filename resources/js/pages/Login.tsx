@@ -12,6 +12,7 @@ export default function Login() {
             <p className="text-center mb-10">Please enter the login credentials associated with your account.</p>
 
             <LoginForm />
+            <p className="text-center mt-5">You can register an account <Link className="text-amber-600 hover:text-amber-700" href={route('register')}>here</Link>.</p>
         </>
     );
 }

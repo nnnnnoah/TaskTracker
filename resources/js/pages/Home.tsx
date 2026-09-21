@@ -1,21 +1,22 @@
-import { Head, Link, usePage } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 import WelcomeMessage from '@/components/ui/WelcomeMessage';
 import HomeActions from '@/components/ui/HomeActions';
 
 export default function Home() {
     const { auth } = usePage().props;
-    const isLoggedIn = auth.user ? true : false;
-
-    console.log(auth);
+    const isLoggedIn = !!auth.user;
 
     return (
         <>
-            <Head title="Welcome"></Head>
+            <Head title="Home" />
 
-            <h1 className="text-2xl font-medium text-center mb-5">Laravel Task Tracker</h1>
+            <div className="py-10 px-5">
+                <h1 className="text-3xl font-bold mb-6">
+                    Welcome back!
+                </h1>
 
-            <WelcomeMessage isLoggedIn={isLoggedIn}/>
-            <HomeActions isLoggedIn={isLoggedIn} />
+                <HomeActions isLoggedIn={isLoggedIn} />
+            </div>
         </>
     );
 }

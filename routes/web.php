@@ -1,12 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Features;
 use App\Http\Controllers\AuthController;
 
-Route::inertia('/', 'Home', [
-    
-])->name('home');
+// If the user is not logged in, display the Welcome page.
+// If they are logged in, display the Home page.
+Route::get('/', function () {
+    return Auth::check()
+        ? inertia('Home')
+        : inertia('Welcome');
+})->name('home');
 
 Route::inertia('/lists', 'Lists', [
     

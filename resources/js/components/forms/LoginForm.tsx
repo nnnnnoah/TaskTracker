@@ -93,7 +93,7 @@ export default function LoginForm() {
                 <button
                     type="submit"
                     disabled={processing}
-                    className="w-full bg-cyan-600 text-white font-medium py-2 px-4 rounded-none hover:bg-cyan-700 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                    className="w-full bg-amber-600 text-white font-medium py-2 px-4 rounded-none hover:bg-amber-700 disabled:opacity-50 disabled:cursor-not-allowed transition"
                 >
                     {processing ? 'Submitting...' : 'Submit'}
                 </button>
