@@ -13,14 +13,6 @@ Route::get('/', function () {
         : inertia('Welcome');
 })->name('home');
 
-Route::inertia('/lists', 'Lists', [
-    
-])->name('lists');
-
-Route::inertia('/tasks', 'Tasks', [
-    
-])->name('tasks');
-
 // Apply the guest middleware to the login and register routes. This ensures that only unauthenticated users can access these routes.
 Route::middleware('guest')->group(function () {
     // Display the login and register pages using Inertia.js.
@@ -38,6 +30,12 @@ Route::middleware('auth')->group(function () {
 
     // Handle the logout form submission using the AuthController.
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout.store');
+
+    Route::inertia('/lists', 'Lists', [])->name('lists');
+    Route::inertia('/tasks', 'Tasks', [])->name('tasks');
+
+    Route::inertia('/list', 'List', [])->name('list');
+    Route::inertia('/task', 'Task', [])->name('task');
 });
 
-require __DIR__.'/settings.php';
+require __DIR__ . '/settings.php';
