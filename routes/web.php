@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Features;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ListController;
+use App\Http\Controllers\TaskController;
 
 // If the user is not logged in, display the Welcome page.
 // If they are logged in, display the Home page.
@@ -31,11 +33,17 @@ Route::middleware('auth')->group(function () {
     // Handle the logout form submission using the AuthController.
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout.store');
 
-    Route::inertia('/lists', 'Lists', [])->name('lists');
-    Route::inertia('/tasks', 'Tasks', [])->name('tasks');
+    // List routes
+    Route::get('/lists', [ListController::class, 'index'])->name('lists.index');
+    Route::post('/lists', [ListController::class, 'create'])->name('lists.store');
+    Route::get('/lists/{list}', [ListController::class, 'show'])->name('lists.show');
+    Route::get('/lists/create', [ListController::class, 'create'])->name('lists.create');
 
-    Route::inertia('/list', 'List', [])->name('list');
-    Route::inertia('/task', 'Task', [])->name('task');
+    // Task routes
+    Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
+    Route::post('/tasks', [TaskController::class, 'create'])->name('tasks.store');
+    Route::get('/tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
+    Route::get('/tasks/create', [ListController::class, 'create'])->name('tasks.create');
 });
 
 require __DIR__ . '/settings.php';

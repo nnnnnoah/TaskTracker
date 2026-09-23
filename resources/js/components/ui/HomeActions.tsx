@@ -23,7 +23,7 @@ export default function HomeActions({ isLoggedIn, lists, tasks }: HomeActionsPro
                             </h2>
 
                             <Link
-                                href={route('lists')}
+                                href={route('lists.index')}
                                 className="text-sm text-blue-400 hover:text-blue-300"
                             >
                                 View all
@@ -37,19 +37,18 @@ export default function HomeActions({ isLoggedIn, lists, tasks }: HomeActionsPro
                         )}
 
                         <div className="h-80 overflow-y-auto p-4 space-y-2">
-                            {lists?.map((list, index) => (
-                                // How should these routes be genereated? http? inline href?
+                            {lists?.map((list: any) => (
                                 <Link
-                                    href="#"
-                                    key={index}
+                                    href={route('lists.show', { list: list.id })}
+                                    key={list.id}
                                     className="block rounded-md border border-zinc-800 bg-zinc-900 px-4 py-3 text-zinc-200 hover:border-blue-500/50 hover:bg-zinc-800 transition">
-                                    {/* {list.name} */}
+                                    {list.name}
                                 </Link>
                             ))}
                         </div>
 
                         <Link
-                            href={route('list')}
+                            href={route('lists.create')}
                             aria-label="Add list"
                             className="absolute bottom-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-blue-500 text-2xl leading-none font-light text-white shadow-lg shadow-blue-500/20 hover:bg-blue-400 hover:scale-105 transition">
                             +
@@ -64,7 +63,7 @@ export default function HomeActions({ isLoggedIn, lists, tasks }: HomeActionsPro
                             </h2>
 
                             <Link
-                                href={route('tasks')}
+                                href={route('tasks.index')}
                                 className="text-sm text-purple-400 hover:text-purple-300"
                             >
                                 View all
@@ -78,19 +77,18 @@ export default function HomeActions({ isLoggedIn, lists, tasks }: HomeActionsPro
                         )}
 
                         <div className="h-80 overflow-y-auto p-4 space-y-2">
-                            {tasks?.map((task, index) => (
-                                // How should these routes be genereated? http? inline href?
+                            {tasks?.map((task: any) => (
                                 <Link
-                                    href="#"
-                                    key={index}
+                                    href={route('tasks.show', { task: task.id })}
+                                    key={task.id}
                                     className="block rounded-md border border-zinc-800 bg-zinc-900 px-4 py-3 text-zinc-200 hover:border-blue-500/50 hover:bg-zinc-800 transition">
-                                    {/* {task.name} */}
+                                    {task.name}
                                 </Link>
                             ))}
                         </div>
 
                         <Link
-                            href={route('task')}
+                            href={route('tasks.create')}
                             aria-label="Add task"
                             className="absolute bottom-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-purple-500 text-2xl leading-none font-light text-white shadow-lg shadow-purple-500/20 hover:bg-purple-400 hover:scale-105 transition">
                             +

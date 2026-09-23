@@ -31,7 +31,7 @@ export default function Header() {
                 {/* Left */}
                 <div className="flex flex-1 justify-end pr-10">
                     <Link
-                        href={route('lists')}
+                        href={route('lists.index')}
                         className="text-lg font-medium text-neutral-400 hover:text-white"
                     >
                         Lists
@@ -48,7 +48,7 @@ export default function Header() {
                 {/* Right */}
                 <div className="flex flex-1 items-center justify-start pl-10">
                     <Link
-                        href={route('tasks')}
+                        href={route('tasks.index')}
                         className="text-lg font-medium text-neutral-400 hover:text-white"
                     >
                         Tasks
