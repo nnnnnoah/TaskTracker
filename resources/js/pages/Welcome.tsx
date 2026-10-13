@@ -21,12 +21,12 @@ export default function Welcome() {
                                 Laravel Task Tracker
                             </h1>
 
-                            <p className="text-lg text-neutral-400 mb-0">
+                            <p className="text-lg mb-0 font-bold">
                                 A task management application built with Laravel,
                                 React, and Inertia.
                             </p>
 
-                            <p className="text-lg text-neutral-400 font-bold">
+                            <p className="text-lg text-neutral-400">
                                 Author: Noah Miller
                             </p>
                         </div>

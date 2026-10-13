@@ -9,7 +9,7 @@ export default function Register() {
             <Head title="Register"></Head>
 
             <h1 className="text-2xl font-medium text-center mb-5">Register Your Account</h1>
-            <p className="text-center mb-10">Please provide the details that will be used to log into your account.</p>
+            <p className="text-center mb-10">Please provide a username and password.</p>
 
             <LoginForm />
             <p className="text-center mt-5">You can log into your account <Link className="text-amber-600 hover:text-amber-700" href={route('login')}>here</Link>.</p>
