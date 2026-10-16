@@ -33,17 +33,9 @@ Route::middleware('auth')->group(function () {
     // Handle the logout form submission using the AuthController.
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout.store');
 
-    // List routes
-    Route::get('/lists', [ListController::class, 'index'])->name('lists.index');
-    Route::post('/lists', [ListController::class, 'create'])->name('lists.store');
-    Route::get('/lists/{list}', [ListController::class, 'show'])->name('lists.show');
-    Route::get('/lists/create', [ListController::class, 'create'])->name('lists.create');
-
-    // Task routes
-    Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
-    Route::post('/tasks', [TaskController::class, 'create'])->name('tasks.store');
-    Route::get('/tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
-    Route::get('/tasks/create', [ListController::class, 'create'])->name('tasks.create');
+    // Define resource routes for lists and tasks. This allows for standard CRUD operations on lists and tasks.
+    Route::resource('lists', ListController::class);
+    Route::resource('tasks', TaskController::class);
 });
 
 require __DIR__ . '/settings.php';
