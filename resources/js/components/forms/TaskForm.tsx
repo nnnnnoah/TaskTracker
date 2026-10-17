@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useForm, usePage } from '@inertiajs/react';
 import { Task } from '@/types';
+import { dateToValue } from '@/utilities/date-to-value';
 
 // TypeScript interface: defines the shape of the form data.
 // Passed to useForm<FormData> so TypeScript can catch typos on field names.
@@ -11,43 +12,6 @@ interface FormData {
     due_date: Date;
     status: string;
     priority: string;
-}
-
-// TypeScript type: the keys of FormData. Used to ensure that field names are valid when unlocking fields.
-type FieldName = keyof FormData;
-
-
-// Base input styles shared by all fields. The border color and focus ring are set conditionally based on whether the field has an error.
-// ensure this matches login form
-const baseInput =
-    'w-full rounded-none p-2 border transition disabled:cursor-not-allowed';
-
-// Returns the full input class string based on whether the field has an error.
-const inputClass = (hasError: boolean) =>
-    `${baseInput} ${
-        hasError
-            ? 'bg-white text-black border-red-500 focus:border-red-500 focus:ring-red-200'
-            : 'bg-white text-black border-neutral-400 focus:border-black'
-    } disabled:bg-neutral-100 disabled:text-neutral-500`;
-
-    // replace with fa or something or something
-function PencilIcon() {
-    return (
-        <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-        >
-            <path d="M12 20h9" />
-            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
-        </svg>
-    );
 }
 
 // Wraps a label, the control, and the error message. In edit mode, a pencil button sits beside the label while the field is locked.
@@ -88,10 +52,6 @@ function Field({
         </div>
     );
 }
-
-// <input type="date"> works with 'YYYY-MM-DD' strings, so convert to and from Date.
-const toDateInputValue = (d: Date) =>
-    d instanceof Date && !isNaN(d.getTime()) ? d.toISOString().slice(0, 10) : '';
 
 export default function TaskForm({ mode, task }: { mode: 'create' | 'edit'; task?: Task }) {
     // Access the Inertia page object to get the current page's component and props.
