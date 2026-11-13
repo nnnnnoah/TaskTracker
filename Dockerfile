@@ -1,7 +1,7 @@
 # Install PHP dependencies and build/run Laravel. The Vite Wayfinder plugin
 # invokes `php artisan wayfinder:generate`, so PHP and Composer must be present
 # while the frontend assets are built.
-FROM php:8.3-cli-bookworm
+FROM php:8.4-cli-bookworm
 
 COPY --from=node:22-bookworm-slim /usr/local/ /usr/local/
 
