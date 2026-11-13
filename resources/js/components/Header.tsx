@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Head, Link, useForm, usePage } from '@inertiajs/react';
+import { Link, useForm, usePage } from '@inertiajs/react';
 import { ListCollapse, User } from 'lucide-react';
 
 export default function Header() {

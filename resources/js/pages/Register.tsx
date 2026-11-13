@@ -1,9 +1,7 @@
-import { Head, Link, usePage } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import LoginForm from '@/components/forms/LoginForm';
 
 export default function Register() {
-    const { auth } = usePage().props;
-
     return (
         <>
             <Head title="Register"></Head>
