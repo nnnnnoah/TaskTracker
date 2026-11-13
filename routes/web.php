@@ -15,6 +15,11 @@ Route::get('/', function () {
         : inertia('Welcome');
 })->name('home');
 
+// Backup routing for Fortify
+Route::inertia('/dashboard', 'Home')
+    ->middleware('auth')
+    ->name('dashboard');
+
 // Apply the guest middleware to the login and register routes. This ensures that only unauthenticated users can access these routes.
 Route::middleware('guest')->group(function () {
     // Display the login and register pages using Inertia.js.
